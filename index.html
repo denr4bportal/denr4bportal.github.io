@@ -2,9 +2,14 @@
 <html>
   <head>
     <title>DENR MIMAROPA</title>
-    <meta http-equiv="refresh" content="1; url=http://27.110.165.6:9229">
+    <!--<meta http-equiv="refresh" content="1; url=http://27.110.165.6:9229">-->
+    <script>
+      function redirect() {
+      location.replace("http://27.110.165.6:9229")
+      }
+    </script>
   </head>
-  <body>
+  <body onload="redirect()">
     <span>We have transfered to our own local server. <a href="http://27.110.165.6:9229">Click here if your not redirected automaticaly</a>.</span>
   </body>
 </html>
