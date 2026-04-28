@@ -2,76 +2,42 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Connecting...</title>
+  <title>DENR Portal</title>
   <script>
-    const servers = [
+    const links = [
       "http://27.110.165.6:9229",
       "http://103.25.177.66:9229",
       "http://126.209.116.66:9229"
     ];
 
-    function checkServer(url, timeout = 10000) {
-      return new Promise((resolve) => {
-        const img = new Image();
-        let done = false;
+    let index = 0;
 
-        const timer = setTimeout(() => {
-          if (!done) {
-            done = true;
-            resolve(false);
-          }
-        }, timeout);
-
-        img.onload = () => {
-          if (!done) {
-            done = true;
-            clearTimeout(timer);
-            resolve(true);
-          }
-        };
-
-        img.onerror = () => {
-          if (!done) {
-            done = true;
-            clearTimeout(timer);
-            resolve(false);
-          }
-        };
-
-        img.src = url + "/favicon.ico?_=" + Date.now();
-      });
-    }
-
-    async function redirect() {
-      for (let i = 0; i < servers.length; i++) {
-        const ok = await checkServer(servers[i]);
-        if (ok) {
-          window.location.href = servers[i];
-          return;
-        }
+    function tryNext() {
+      if (index >= links.length) {
+        document.body.innerHTML = `
+          <h2>Unable to connect to the system</h2>
+          <p>If you can’t access our IS, try these alternatives:</p>
+          <ul>
+            <li><a href="http://27.110.165.6:9229">http://27.110.165.6:9229</a></li>
+            <li><a href="http://103.25.177.66:9229">http://103.25.177.66:9229</a></li>
+            <li><a href="http://126.209.116.66:9229">http://126.209.116.66:9229</a></li>
+          </ul>
+        `;
+        return;
       }
 
-      // Fallback message if all fail
-      document.body.innerHTML = `
-        <h2>Unable to connect to the system</h2>
-        <p>If you can’t access our IS, try these alternatives:</p>
-        <ul>
-          <li><a href="http://27.110.165.6:9229">http://27.110.165.6:9229</a></li>
-          <li><a href="http://103.25.177.66:9229">http://103.25.177.66:9229</a></li>
-          <li><a href="http://126.209.116.66:9229">http://126.209.116.66:9229</a></li>
-        </ul>
-      `;
+      // Attempt redirect
+      window.location.href = links[index];
+
+      // Move to next after delay (in case it fails)
+      index++;
+      setTimeout(tryNext, 3000);
     }
 
-    window.onload = redirect;
+    window.onload = tryNext;
   </script>
 </head>
 <body>
-<h3>If you can’t access our IS, try these alternatives:</h3>
-        <ul>
-          <li>http://27.110.165.6:9229</li>
-          <li>http://103.25.177.66:9229</li>
-          <li>http://126.209.116.66:9229</li>
-        </ul>
+  <p>Connecting to server...</p>
 </body>
 </html>
