@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>DENR Portal</title>
@@ -14,32 +14,24 @@
     let index = 0;
 
     function tryNext() {
-      if (index >= links.length) {
-        document.body.innerHTML = `
-          <h3></p><button onclick="window.external.AddFavorite('https://denr4bportal.github.io', 'DENR Portal')">Please bookmark this page</button>, if you can’t access our IS, try these alternatives:</h3>
-          <ul>
-            <li>http://172.16.32.32</li>
-            <li>http://27.110.165.6:9229</li>
-            <li>http://103.25.177.66:9229</li>
-            <li>http://126.209.116.66:9229</li>
-          </ul>
-        `;
-        return;
-      }
+      if (index >= links.length) return;
 
-      // Attempt redirect
-      window.location.href = links[index];
-
-      // Move to next after delay (in case it fails)
-      index++;
+      window.location.href = links[index++];
       setTimeout(tryNext, 10000);
     }
 
-    window.onload = tryNext;
+    window.addEventListener("load", tryNext);
   </script>
 </head>
 <body>
-  
-</body>
+  <h3>
+    <button onclick="window.external?.AddFavorite?.('https://denr4bportal.github.io', 'DENR Portal')">Please bookmark this page</button>, if you can’t access the system try these alternatives:
+  </h3>
+  <ul>
+    <li><a href="http://172.16.32.32">http://172.16.32.32</a></li>
+    <li><a href="http://27.110.165.6:9229">http://27.110.165.6:9229</a></li>
+    <li><a href="http://103.25.177.66:9229">http://103.25.177.66:9229</a></li>
+    <li><a href="http://126.209.116.66:9229">http://126.209.116.66:9229</a></li>
+  </ul>
 </body>
 </html>
