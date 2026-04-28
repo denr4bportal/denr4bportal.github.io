@@ -16,8 +16,7 @@
     function tryNext() {
       if (index >= links.length) {
         document.body.innerHTML = `
-          <h2>Unable to connect to the system</h2>
-          <p>If you can’t access our IS, try these alternatives:</p>
+          <h3></p><button onclick="window.external.AddFavorite('https://denr4bportal.github.io', 'DENR Portal')">Please bookmark this page</button>, if you can’t access our IS, try these alternatives:</h3>
           <ul>
             <li>http://172.16.32.32</li>
             <li>http://27.110.165.6:9229</li>
@@ -33,18 +32,14 @@
 
       // Move to next after delay (in case it fails)
       index++;
-      setTimeout(tryNext, 3000);
+      setTimeout(tryNext, 10000);
     }
 
     window.onload = tryNext;
   </script>
 </head>
 <body>
-  <p>If you can’t access our IS, try these alternatives:</p>
-          <ul>
-            <li>http://27.110.165.6:9229</li>
-            <li>http://103.25.177.66:9229</li>
-            <li>http://126.209.116.66:9229</li>
-          </ul>
+  
+</body>
 </body>
 </html>
