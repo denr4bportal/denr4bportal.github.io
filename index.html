@@ -17,7 +17,7 @@
       if (index >= links.length) return;
 
       window.location.href = links[index++];
-      setTimeout(tryNext, 10000);
+      setTimeout(tryNext, 7000);
     }
 
     window.addEventListener("load", tryNext);
@@ -25,13 +25,13 @@
 </head>
 <body>
   <h3>
-    <button onclick="window.external?.AddFavorite?.('https://denr4bportal.github.io', 'DENR Portal')">Please bookmark this page</button>, if you can’t access the system try these alternatives:
+    <a href="#" onclick="window.external?.AddFavorite?.('https://denr4bportal.github.io', 'DENR Portal')">Please bookmark this page</a>, if you cant access our systems copy and paste this these alternatives to your web browser:
   </h3>
   <ul>
-    <li><a href="http://172.16.32.32">http://172.16.32.32</a></li>
-    <li><a href="http://27.110.165.6:9229">http://27.110.165.6:9229</a></li>
-    <li><a href="http://103.25.177.66:9229">http://103.25.177.66:9229</a></li>
-    <li><a href="http://126.209.116.66:9229">http://126.209.116.66:9229</a></li>
+    <li>http://172.16.32.32</li>
+    <li>http://27.110.165.6:9229</li>
+    <li>http://103.25.177.66:9229</li>
+    <li>http://126.209.116.66:9229</li>
   </ul>
 </body>
 </html>
